@@ -18,11 +18,16 @@
 #   SPDX-License-Identifier: MIT
 ######
 #!/usr/bin/env python3
-import aws_cdk as cdk
-
+from aws_cdk import core
 from textract_pdf_extraction_stack.simple_async_workflow import SimpleAsyncWorkflow
+from aws_cdk.aws_lambda import Runtime
 
-app = cdk.App()
-SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow")
+app = core.App()
+
+# Define your Lambda function with the desired Node.js version
+lambda_runtime = Runtime.NODEJS_20_X
+
+# Pass the runtime when creating the Lambda function
+SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", lambda_runtime)
 
 app.synth()
