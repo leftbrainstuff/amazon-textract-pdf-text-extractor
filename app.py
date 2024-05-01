@@ -19,19 +19,13 @@
 ######
 
 #!/usr/bin/env python3
-import os
-from aws_cdk import core
-from aws_cdk.aws_lambda import Runtime
+import aws_cdk as cdk
 from textract_pdf_extraction_stack.simple_async_workflow import SimpleAsyncWorkflow
 
-# Set the Lambda Node.js runtime version as an environment variable
-os.environ['AWS_LAMBDA_JS_RUNTIME'] = 'nodejs14.x'
-
-app = core.App()
-lambda_runtime = Runtime.from_environment_variable('AWS_LAMBDA_JS_RUNTIME')
-
-SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", lambda_runtime=lambda_runtime)
+app = cdk.App()
+SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", nodejs_version="${nodejs20.x}")
 
 app.synth()
+
 
 
