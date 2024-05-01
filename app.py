@@ -20,10 +20,11 @@
 
 #!/usr/bin/env python3
 import aws_cdk as cdk
+from aws_cdk import aws_lambda
 from textract_pdf_extraction_stack.simple_async_workflow import SimpleAsyncWorkflow
 
 app = cdk.App()
-SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", nodejs_version="${nodejs20.x}")
+SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", lambda_runtime=aws_lambda.Runtime.NODE_JS_20_X)
 
 app.synth()
 
