@@ -5,5 +5,9 @@ RUN python -m pip install schadem-tidp-manifest==0.0.8 marshmallow --target "${L
 # Copy function code
 COPY app/* ${LAMBDA_TASK_ROOT}/
 
+# Install Node.js 18
+RUN curl -sL https://rpm.nodesource.com/setup_18.x | bash -
+RUN yum install -y nodejs
+
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
 CMD [ "start_execution.lambda_handler" ]
