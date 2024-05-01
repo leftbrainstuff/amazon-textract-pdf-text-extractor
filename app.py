@@ -25,9 +25,10 @@ from aws_cdk.aws_lambda import Runtime
 app = core.App()
 
 # Define your Lambda function with the desired Node.js version
-lambda_runtime = Runtime.NODEJS_20_X
+lambda_runtime = Runtime.nodejs20.x
 
 # Pass the runtime when creating the Lambda function
 SimpleAsyncWorkflow(app, "SimpleAsyncWorkflow", lambda_runtime)
 
 app.synth()
+
