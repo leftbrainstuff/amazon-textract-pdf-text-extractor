@@ -33,6 +33,7 @@ noLinesHeader = int(os.environ.get("NO_LINES_HEADER", 5))
 noLinesFooter = int(os.environ.get("NO_LINES_FOOTER", 10))
 filterParaWithWords = int(os.environ.get("FILTER_PARA_WORDS", 10))
 
+
 def lambda_handler(event, context):
     paragraphs = []
     textractS3OutputPath = event['textract_result']['TextractTempOutputJsonPath']
@@ -76,7 +77,7 @@ def lambda_handler(event, context):
     print(f"Number of filtered paragraphs extracted : {len(filteredParagraphs)}")
 
     # Get the original filename
-    original_filename = os.path.basename(textractS3OutputPath).rsplit('.', 1)[0]
+    original_filename = os.path.basename(textractS3OutputPath)
     # Generate the timestamp
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     # Create the new filename with timestamp
