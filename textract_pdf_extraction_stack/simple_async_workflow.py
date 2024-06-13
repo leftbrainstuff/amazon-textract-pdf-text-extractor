@@ -59,7 +59,7 @@ class SimpleAsyncWorkflow(Stack):
             s3_temp_output_prefix=s3_temp_output_prefix,
             integration_pattern=sfn.IntegrationPattern.WAIT_FOR_TASK_TOKEN,
             lambda_log_level="DEBUG",
-            timeout=Duration.hours(24),
+            taskTimeout=Duration.hours(24),
             input=sfn.TaskInput.from_object({
                 "Token":
                 sfn.JsonPath.task_token,
@@ -76,7 +76,7 @@ class SimpleAsyncWorkflow(Stack):
             code=lambda_.DockerImageCode.from_image_asset(
                 os.path.join(script_location, '../lambda/textractpostprocessor')),
             memory_size=2048,
-            timeout=Duration.minutes(15),
+            taskTimeout=Duration.minutes(15),
             environment={"SKIP_PAGES": "CONTENTS,TABLE OF CONTENTS,FOREWORDS, ANNEXES,Table of Contents,ACRONYMS, ABBREVIATIONS",
                          "NO_LINES_HEADER": "3",
                          "NO_LINES_FOOTER": "10",
